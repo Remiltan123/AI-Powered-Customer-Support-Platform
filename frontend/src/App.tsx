@@ -1,11 +1,34 @@
-
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainLayout from "./Components/UserComponents/Layout/UserLayout";
+import Dashboard from "../src/Pages/UserPages/Dashboard/Dashboard";
+import Restaurant from "./Pages/UserPages/Restaurant/Restaurant";
+import Orders from "./Pages/UserPages/Orders/Orders";
+import Settings from "./Pages/UserPages/Settings/Settings"
+import AdminLayout from "./Components/AdminComponents/Layout/AdminLayout";
 
 function App() {
 
-  return (
-    <div className='bg-amber-400'>ABINASH</div>
-  )
+   return (
+    <BrowserRouter>
+      <Routes>
+        {/* USER ROUTES */}
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="restaurants" element={<Restaurant />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+
+        {/* ADMIN ROUTES */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="users" element={<Restaurant  />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App
